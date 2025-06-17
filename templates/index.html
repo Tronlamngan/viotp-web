@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tool Check Shopee</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Tool Check Shopee + VIOTP</h2>
+    <form id="checkForm">
+        <input type="text" name="phone" placeholder="Nhập số điện thoại">
+        <button type="submit">Kiểm tra</button>
+    </form>
+    <div id="result"></div>
+    <script>
+    document.getElementById("checkForm").onsubmit = async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const res = await fetch("/check", {method: "POST", body: formData});
+        const data = await res.json();
+        document.getElementById("result").innerText = JSON.stringify(data);
+    }
+    </script>
+</body>
+</html>
